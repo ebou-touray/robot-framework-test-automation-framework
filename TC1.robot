@@ -1,12 +1,11 @@
 *** Settings ***
 Documentation      Tests related to Login Scenarios
 Library            SeleniumLibrary
-
+Resource           MyTest_Keywords.robot
 *** Test Cases ***
 Valid Login
    [Tags]  Ebou
-   Open Browser  ${URL}   ${BROWSER}
-   Maximize Browser Window
+   Navigate to Home Page
    Click Element  ${HOMEPAGE_SIGNIN_LINK}
    Input Text  ${LOGIN_USERNAME_FIELD}  amieocolley@gmail.com
    Input Text  ${LOGIN_PASSWORD_FIELD}  Jalato@1
