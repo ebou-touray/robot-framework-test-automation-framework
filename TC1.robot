@@ -6,10 +6,7 @@ Resource           MyTest_Keywords.robot
 Valid Login
    [Tags]  Ebou
    Navigate to Home Page
-   Click Element  ${HOMEPAGE_SIGNIN_LINK}
-   Input Text  ${LOGIN_USERNAME_FIELD}  amieocolley@gmail.com
-   Input Text  ${LOGIN_PASSWORD_FIELD}  Jalato@1
-   Click Element  ${SIGNIN_BUTTON}
+   Enter login credentials and click on the signin button   amieocolley@gmail.com  Jalato@1
    Wait Until Page Contains  ${LOGIN_SUCCESS_MESSAGE}  50s
    #Capture Page Screenshot
 
@@ -18,7 +15,7 @@ Valid Login
 
      amieocolley@gmail.com      Jalato@4      ${LOGIN_SUCCESS_MESSAGE}
      amieocolle@gmail.com       Jalato@1      ${LOGIN_SUCCESS_MESSAGE}
-     amieocolley@gmail.com      Jalato@1      ${LOGIN_SUCCESS_MESSAGE}
+     amieocolle@gmail.com       Jalato@1      ${LOGIN_SUCCESS_MESSAGE}
      ${EMPTY}                   Jalato@1      ${LOGIN_SUCCESS_MESSAGE}
      ${EMPTY}                   ${EMPTY}      ${LOGIN_SUCCESS_MESSAGE}
 

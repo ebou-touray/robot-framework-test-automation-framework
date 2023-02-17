@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.2 (Python 3.9.10 on win32)" generated="20230218 00:52:12.482" rpa="false" schemaversion="2">
+<suite id="s1" name="CreateNewUser" source="C:\Users\dell\PycharmProjects\TestOAutomation2023\CreateNewUser.robot">
+<test id="s1-t1" name="Verify that new user can create a new account">
+<kw name="Navigate to Home Page" library="MyTest_Keywords">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230218 00:52:13.829" level="INFO">Opening browser 'chrome' to base url 'https://magento.softwaretestingboard.com'.</msg>
+<status status="PASS" starttime="20230218 00:52:13.828" endtime="20230218 00:52:18.438"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230218 00:52:18.439" endtime="20230218 00:52:18.698"/>
+</kw>
+<status status="PASS" starttime="20230218 00:52:13.828" endtime="20230218 00:52:18.698"/>
+</kw>
+<kw name="Click the create account link and enter required details for new user" library="MyTest_Keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${CREATE_NEW_ACCOUNT_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230218 00:52:18.718" level="INFO">Clicking element 'xpath://a[text() = 'Create an Account']'.</msg>
+<status status="PASS" starttime="20230218 00:52:18.716" endtime="20230218 00:52:20.672"/>
+</kw>
+<kw name="Enter new user firstname" library="MyTest_Keywords">
+<kw name="First Name" library="FakerLibrary">
+<var>${firstname}</var>
+<msg timestamp="20230218 00:52:20.676" level="INFO">${firstname} = Andrea</msg>
+<status status="PASS" starttime="20230218 00:52:20.674" endtime="20230218 00:52:20.676"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${firstname}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230218 00:52:20.678" level="INFO">Andrea</msg>
+<status status="PASS" starttime="20230218 00:52:20.676" endtime="20230218 00:52:20.678"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${firstname}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230218 00:52:20.680" level="INFO">${firstname} = Andrea</msg>
+<status status="PASS" starttime="20230218 00:52:20.678" endtime="20230218 00:52:20.680"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${CREATE_ACCOUNT_FIRSTNAME_FIELD}</arg>
+<arg>${firstname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230218 00:52:20.682" level="INFO">Typing text 'Andrea' into text field 'id:firstname'.</msg>
+<status status="PASS" starttime="20230218 00:52:20.681" endtime="20230218 00:52:21.234"/>
+</kw>
+<status status="PASS" starttime="20230218 00:52:20.673" endtime="20230218 00:52:21.235"/>
+</kw>
+<kw name="Enter new user lastname" library="MyTest_Keywords">
+<kw name="Last Name" library="FakerLibrary">
+<var>${lastname}</var>
+<msg timestamp="20230218 00:52:21.240" level="INFO">${lastname} = Jacobs</msg>
+<status status="PASS" starttime="20230218 00:52:21.239" endtime="20230218 00:52:21.240"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${lastname}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230218 00:52:21.242" level="INFO">Jacobs</msg>
+<status status="PASS" starttime="20230218 00:52:21.241" endtime="20230218 00:52:21.242"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${lastname}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230218 00:52:21.244" level="INFO">${lastname} = Jacobs</msg>
+<status status="PASS" starttime="20230218 00:52:21.243" endtime="20230218 00:52:21.244"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${CREATE_ACCOUNT_LASTNAME_FIELD}</arg>
+<arg>${lastname}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230218 00:52:21.246" level="INFO">Typing text 'Jacobs' into text field 'id:lastname'.</msg>
+<status status="PASS" starttime="20230218 00:52:21.245" endtime="20230218 00:52:21.381"/>
+</kw>
+<status status="PASS" starttime="20230218 00:52:21.236" endtime="20230218 00:52:21.382"/>
+</kw>
+<kw name="Enter email for creating new user" library="MyTest_Keywords">
+<kw name="Email" library="FakerLibrary">
+<var>${email}</var>
+<msg timestamp="20230218 00:52:21.383" level="INFO">${email} = ccunningham@example.net</msg>
+<status status="PASS" starttime="20230218 00:52:21.382" endtime="20230218 00:52:21.383"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${email}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230218 00:52:21.383" level="INFO">ccunningham@example.net</msg>
+<status status="PASS" starttime="20230218 00:52:21.383" endtime="20230218 00:52:21.383"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${email}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20230218 00:52:21.384" level="INFO">${email} = ccunningham@example.net</msg>
+<status status="PASS" starttime="20230218 00:52:21.383" endtime="20230218 00:52:21.385"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${CREATE_ACCOUNT_EMAIL_FIELD}</arg>
+<arg>${email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230218 00:52:21.386" level="INFO">Typing text 'ccunningham@example.net' into text field 'name:email'.</msg>
+<status status="PASS" starttime="20230218 00:52:21.385" endtime="20230218 00:52:21.597"/>
+</kw>
+<status status="PASS" starttime="20230218 00:52:21.382" endtime="20230218 00:52:21.600"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${CREATE_ACCOUNT_PASSWORD_FIELD}</arg>
+<arg>Testing123!</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230218 00:52:21.605" level="INFO">Typing text 'Testing123!' into text field 'id:password'.</msg>
+<status status="PASS" starttime="20230218 00:52:21.601" endtime="20230218 00:52:21.840"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${CONFIRMATION_PASSWORD_FIELD}</arg>
+<arg>Testing123!</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230218 00:52:21.842" level="INFO">Typing text 'Testing123!' into text field 'id:password-confirmation'.</msg>
+<status status="PASS" starttime="20230218 00:52:21.841" endtime="20230218 00:52:22.003"/>
+</kw>
+<status status="PASS" starttime="20230218 00:52:18.713" endtime="20230218 00:52:22.003"/>
+</kw>
+<kw name="Click Create account button and assert that user has been created successfully" library="MyTest_Keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${CREATE_ACCOUNT_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230218 00:52:22.005" level="INFO">Clicking element 'xpath://span[text() = 'Create an Account' ]'.</msg>
+<status status="PASS" starttime="20230218 00:52:22.004" endtime="20230218 00:52:25.067"/>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<arg>Thank you for registering with Fake Online Clothing Store.</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" starttime="20230218 00:52:25.068" endtime="20230218 00:52:25.410"/>
+</kw>
+<status status="PASS" starttime="20230218 00:52:22.004" endtime="20230218 00:52:25.411"/>
+</kw>
+<status status="PASS" starttime="20230218 00:52:13.827" endtime="20230218 00:52:25.422"/>
+</test>
+<doc>Tests related to creating new user account on Luma</doc>
+<status status="PASS" starttime="20230218 00:52:12.486" endtime="20230218 00:52:25.426"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="CreateNewUser">CreateNewUser</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
