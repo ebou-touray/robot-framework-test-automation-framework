@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.0.2 (Python 3.9.10 on win32)" generated="20230217 19:04:51.667" rpa="false" schemaversion="2">
+<suite id="s1" name="TC1" source="C:\Users\dell\PycharmProjects\TestOAutomation2023\TC1.robot">
+<test id="s1-t1" name="Valid Login">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230217 19:04:52.042" level="INFO">Opening browser 'chrome' to base url 'https://magento.softwaretestingboard.com'.</msg>
+<status status="PASS" starttime="20230217 19:04:52.042" endtime="20230217 19:04:55.722"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230217 19:04:55.723" endtime="20230217 19:04:55.979"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${HOMEPAGE_SIGNIN_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:04:55.989" level="INFO">Clicking element 'class:authorization-link'.</msg>
+<status status="PASS" starttime="20230217 19:04:55.986" endtime="20230217 19:04:57.515"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:04:57.518" level="INFO">Typing text '' into text field 'name:login[username]'.</msg>
+<status status="PASS" starttime="20230217 19:04:57.517" endtime="20230217 19:04:57.798"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_PASSWORD_FIELD}</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:04:57.801" level="INFO">Typing text '' into text field 'id:pass'.</msg>
+<status status="PASS" starttime="20230217 19:04:57.800" endtime="20230217 19:04:57.943"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SIGNIN_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:04:57.944" level="INFO">Clicking element 'id:send2'.</msg>
+<status status="PASS" starttime="20230217 19:04:57.943" endtime="20230217 19:04:58.036"/>
+</kw>
+<kw name="Wait Until Page Contains" library="SeleniumLibrary">
+<arg>${LOGIN_SUCCESS_MESSAGE}</arg>
+<arg>50s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<msg timestamp="20230217 19:05:25.214" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=109.0.5414.120)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x0024F243]
+	(No symbol) [0x001D7FD1]
+	(No symbol) [0x000CD04D]
+	(No symbol) [0x000B2D7A]
+	(No symbol) [0x0011BE7B]
+	(No symbol) [0x0012C196]
+	(No symbol) [0x00118386]
+	(No symbol) [0x000F163C]
+	(No symbol) [0x000F269D]
+	GetHandleVerifier [0x004E9A22+2655074]
+	GetHandleVerifier [0x004DCA24+2601828]
+	GetHandleVerifier [0x002F8C0A+619850]
+	GetHandleVerifier [0x002F7830+614768]
+	(No symbol) [0x001E05FC]
+	(No symbol) [0x001E5968]
+	(No symbol) [0x001E5A55]
+	(No symbol) [0x001F051B]
+	BaseThreadInitThunk [0x753B00F9+25]
+	RtlGetAppContainerNamedObjectPath [0x77057BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77057B8E+238]
+	(No symbol) [0x00000000]
+</msg>
+<msg timestamp="20230217 19:05:25.255" level="FAIL">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=109.0.5414.120)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x0024F243]
+	(No symbol) [0x001D7FD1]
+	(No symbol) [0x000CD04D]
+	(No symbol) [0x000B2D7A]
+	(No symbol) [0x0011BE7B]
+	(No symbol) [0x0012C196]
+	(No symbol) [0x00118386]
+	(No symbol) [0x000F163C]
+	(No symbol) [0x000F269D]
+	GetHandleVerifier [0x004E9A22+2655074]
+	GetHandleVerifier [0x004DCA24+2601828]
+	GetHandleVerifier [0x002F8C0A+619850]
+	GetHandleVerifier [0x002F7830+614768]
+	(No symbol) [0x001E05FC]
+	(No symbol) [0x001E5968]
+	(No symbol) [0x001E5A55]
+	(No symbol) [0x001F051B]
+	BaseThreadInitThunk [0x753B00F9+25]
+	RtlGetAppContainerNamedObjectPath [0x77057BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77057B8E+238]
+	(No symbol) [0x00000000]
+</msg>
+<status status="FAIL" starttime="20230217 19:04:58.038" endtime="20230217 19:05:25.256"/>
+</kw>
+<tag>Ebou</tag>
+<status status="FAIL" starttime="20230217 19:04:52.041" endtime="20230217 19:05:25.257">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=109.0.5414.120)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x0024F243]
+	(No symbol) [0x001D7FD1]
+	(No symbol) [0x000CD04D]
+	(No symbol) [0x000B2D7A]
+	(No symbol) [0x0011BE7B]
+	(No symbol) [0x0012C196]
+	(No symbol) [0x00118386]
+	(No symbol) [0x000F163C]
+	(No symbol) [0x000F269D]
+	GetHandleVerifier [0x004E9A22+2655074]
+	GetHandleVerifier [0x004DCA24+2601828]
+	GetHandleVerifier [0x002F8C0A+619850]
+	GetHandleVerifier [0x002F7830+614768]
+	(No symbol) [0x001E05FC]
+	(No symbol) [0x001E5968]
+	(No symbol) [0x001E5A55]
+	(No symbol) [0x001F051B]
+	BaseThreadInitThunk [0x753B00F9+25]
+	RtlGetAppContainerNamedObjectPath [0x77057BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77057B8E+238]
+	(No symbol) [0x00000000]
+</status>
+</test>
+<test id="s1-t2" name=" Verify that access is denied when login credentials are not correct">
+<kw name="Invalid login credentials should not allow the user to login">
+<arg>davidzoe@gmail.com</arg>
+<arg>Testing123</arg>
+<arg>${LOGIN_SUCCESS_MESSAGE}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230217 19:05:25.266" level="INFO">Opening browser 'chrome' to base url 'https://magento.softwaretestingboard.com'.</msg>
+<status status="PASS" starttime="20230217 19:05:25.265" endtime="20230217 19:05:28.817"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230217 19:05:28.818" endtime="20230217 19:05:28.969"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${HOMEPAGE_SIGNIN_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:28.973" level="INFO">Clicking element 'class:authorization-link'.</msg>
+<status status="PASS" starttime="20230217 19:05:28.970" endtime="20230217 19:05:30.284"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:30.285" level="INFO">Typing text 'davidzoe@gmail.com' into text field 'name:login[username]'.</msg>
+<status status="PASS" starttime="20230217 19:05:30.284" endtime="20230217 19:05:30.611"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:30.612" level="INFO">Typing text 'Testing123' into text field 'id:pass'.</msg>
+<status status="PASS" starttime="20230217 19:05:30.611" endtime="20230217 19:05:30.795"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SIGNIN_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:30.796" level="INFO">Clicking element 'id:send2'.</msg>
+<status status="PASS" starttime="20230217 19:05:30.795" endtime="20230217 19:05:33.342"/>
+</kw>
+<kw name="Page Should Not Contain" library="SeleniumLibrary">
+<arg>${sucessMessage} 50s</arg>
+<doc>Verifies the current page does not contain ``text``.</doc>
+<msg timestamp="20230217 19:05:33.378" level="INFO">Current page does not contain text 'Welcome, David Zoe! 50s'.</msg>
+<status status="PASS" starttime="20230217 19:05:33.342" endtime="20230217 19:05:33.378"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230217 19:05:33.379" endtime="20230217 19:05:35.824"/>
+</kw>
+<status status="PASS" starttime="20230217 19:05:25.263" endtime="20230217 19:05:35.824"/>
+</kw>
+<kw name="Invalid login credentials should not allow the user to login">
+<arg>davidzo@gmail.com</arg>
+<arg>Testing123!</arg>
+<arg>${LOGIN_SUCCESS_MESSAGE}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230217 19:05:35.826" level="INFO">Opening browser 'chrome' to base url 'https://magento.softwaretestingboard.com'.</msg>
+<status status="PASS" starttime="20230217 19:05:35.826" endtime="20230217 19:05:39.224"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230217 19:05:39.225" endtime="20230217 19:05:39.485"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${HOMEPAGE_SIGNIN_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:39.488" level="INFO">Clicking element 'class:authorization-link'.</msg>
+<status status="PASS" starttime="20230217 19:05:39.486" endtime="20230217 19:05:41.541"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:41.543" level="INFO">Typing text 'davidzo@gmail.com' into text field 'name:login[username]'.</msg>
+<status status="PASS" starttime="20230217 19:05:41.542" endtime="20230217 19:05:42.163"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:42.165" level="INFO">Typing text 'Testing123!' into text field 'id:pass'.</msg>
+<status status="PASS" starttime="20230217 19:05:42.164" endtime="20230217 19:05:42.419"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SIGNIN_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:42.420" level="INFO">Clicking element 'id:send2'.</msg>
+<status status="PASS" starttime="20230217 19:05:42.419" endtime="20230217 19:05:44.485"/>
+</kw>
+<kw name="Page Should Not Contain" library="SeleniumLibrary">
+<arg>${sucessMessage} 50s</arg>
+<doc>Verifies the current page does not contain ``text``.</doc>
+<msg timestamp="20230217 19:05:44.665" level="INFO">Current page does not contain text 'Welcome, David Zoe! 50s'.</msg>
+<status status="PASS" starttime="20230217 19:05:44.485" endtime="20230217 19:05:44.665"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230217 19:05:44.665" endtime="20230217 19:05:48.242"/>
+</kw>
+<status status="PASS" starttime="20230217 19:05:35.825" endtime="20230217 19:05:48.243"/>
+</kw>
+<kw name="Invalid login credentials should not allow the user to login">
+<arg>davidzoe@gmail.com</arg>
+<arg>Testing123</arg>
+<arg>${LOGIN_SUCCESS_MESSAGE}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230217 19:05:48.244" level="INFO">Opening browser 'chrome' to base url 'https://magento.softwaretestingboard.com'.</msg>
+<status status="PASS" starttime="20230217 19:05:48.244" endtime="20230217 19:05:52.410"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230217 19:05:52.410" endtime="20230217 19:05:52.625"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${HOMEPAGE_SIGNIN_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:52.626" level="INFO">Clicking element 'class:authorization-link'.</msg>
+<status status="PASS" starttime="20230217 19:05:52.625" endtime="20230217 19:05:54.199"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:54.200" level="INFO">Typing text 'davidzoe@gmail.com' into text field 'name:login[username]'.</msg>
+<status status="PASS" starttime="20230217 19:05:54.199" endtime="20230217 19:05:54.618"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:54.622" level="INFO">Typing text 'Testing123' into text field 'id:pass'.</msg>
+<status status="PASS" starttime="20230217 19:05:54.619" endtime="20230217 19:05:54.771"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SIGNIN_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:05:54.771" level="INFO">Clicking element 'id:send2'.</msg>
+<status status="PASS" starttime="20230217 19:05:54.771" endtime="20230217 19:05:56.859"/>
+</kw>
+<kw name="Page Should Not Contain" library="SeleniumLibrary">
+<arg>${sucessMessage} 50s</arg>
+<doc>Verifies the current page does not contain ``text``.</doc>
+<msg timestamp="20230217 19:05:56.924" level="INFO">Current page does not contain text 'Welcome, David Zoe! 50s'.</msg>
+<status status="PASS" starttime="20230217 19:05:56.859" endtime="20230217 19:05:56.924"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230217 19:05:56.924" endtime="20230217 19:05:59.409"/>
+</kw>
+<status status="PASS" starttime="20230217 19:05:48.243" endtime="20230217 19:05:59.409"/>
+</kw>
+<kw name="Invalid login credentials should not allow the user to login">
+<arg>${EMPTY}</arg>
+<arg>Testing 123!</arg>
+<arg>${LOGIN_SUCCESS_MESSAGE}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230217 19:05:59.411" level="INFO">Opening browser 'chrome' to base url 'https://magento.softwaretestingboard.com'.</msg>
+<status status="PASS" starttime="20230217 19:05:59.411" endtime="20230217 19:06:03.331"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230217 19:06:03.332" endtime="20230217 19:06:03.492"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${HOMEPAGE_SIGNIN_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:06:03.493" level="INFO">Clicking element 'class:authorization-link'.</msg>
+<status status="PASS" starttime="20230217 19:06:03.492" endtime="20230217 19:06:04.937"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:06:04.939" level="INFO">Typing text '' into text field 'name:login[username]'.</msg>
+<status status="PASS" starttime="20230217 19:06:04.938" endtime="20230217 19:06:05.181"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:06:05.183" level="INFO">Typing text 'Testing 123!' into text field 'id:pass'.</msg>
+<status status="PASS" starttime="20230217 19:06:05.181" endtime="20230217 19:06:05.384"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SIGNIN_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:06:05.386" level="INFO">Clicking element 'id:send2'.</msg>
+<status status="PASS" starttime="20230217 19:06:05.385" endtime="20230217 19:06:05.487"/>
+</kw>
+<kw name="Page Should Not Contain" library="SeleniumLibrary">
+<arg>${sucessMessage} 50s</arg>
+<doc>Verifies the current page does not contain ``text``.</doc>
+<msg timestamp="20230217 19:06:05.535" level="INFO">Current page does not contain text 'Welcome, David Zoe! 50s'.</msg>
+<status status="PASS" starttime="20230217 19:06:05.487" endtime="20230217 19:06:05.535"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230217 19:06:05.536" endtime="20230217 19:06:07.997"/>
+</kw>
+<status status="PASS" starttime="20230217 19:05:59.410" endtime="20230217 19:06:07.997"/>
+</kw>
+<kw name="Invalid login credentials should not allow the user to login">
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<arg>${LOGIN_SUCCESS_MESSAGE}</arg>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20230217 19:06:08.000" level="INFO">Opening browser 'chrome' to base url 'https://magento.softwaretestingboard.com'.</msg>
+<status status="PASS" starttime="20230217 19:06:08.000" endtime="20230217 19:06:11.606"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20230217 19:06:11.606" endtime="20230217 19:06:11.739"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${HOMEPAGE_SIGNIN_LINK}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:06:11.741" level="INFO">Clicking element 'class:authorization-link'.</msg>
+<status status="PASS" starttime="20230217 19:06:11.739" endtime="20230217 19:06:13.217"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_USERNAME_FIELD}</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:06:13.219" level="INFO">Typing text '' into text field 'name:login[username]'.</msg>
+<status status="PASS" starttime="20230217 19:06:13.218" endtime="20230217 19:06:13.556"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${LOGIN_PASSWORD_FIELD}</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20230217 19:06:13.556" level="INFO">Typing text '' into text field 'id:pass'.</msg>
+<status status="PASS" starttime="20230217 19:06:13.556" endtime="20230217 19:06:13.690"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${SIGNIN_BUTTON}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20230217 19:06:13.690" level="INFO">Clicking element 'id:send2'.</msg>
+<status status="PASS" starttime="20230217 19:06:13.690" endtime="20230217 19:06:13.814"/>
+</kw>
+<kw name="Page Should Not Contain" library="SeleniumLibrary">
+<arg>${sucessMessage} 50s</arg>
+<doc>Verifies the current page does not contain ``text``.</doc>
+<msg timestamp="20230217 19:06:13.868" level="INFO">Current page does not contain text 'Welcome, David Zoe! 50s'.</msg>
+<status status="PASS" starttime="20230217 19:06:13.815" endtime="20230217 19:06:13.868"/>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20230217 19:06:13.868" endtime="20230217 19:06:16.256"/>
+</kw>
+<status status="PASS" starttime="20230217 19:06:07.998" endtime="20230217 19:06:16.257"/>
+</kw>
+<status status="PASS" starttime="20230217 19:05:25.261" endtime="20230217 19:06:16.257"/>
+</test>
+<doc>Tests related to Login Scenarios</doc>
+<status status="FAIL" starttime="20230217 19:04:51.669" endtime="20230217 19:06:16.260"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">Ebou</stat>
+</tag>
+<suite>
+<stat pass="1" fail="1" skip="0" id="s1" name="TC1">TC1</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230217 19:05:25.214" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=109.0.5414.120)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x0024F243]
+	(No symbol) [0x001D7FD1]
+	(No symbol) [0x000CD04D]
+	(No symbol) [0x000B2D7A]
+	(No symbol) [0x0011BE7B]
+	(No symbol) [0x0012C196]
+	(No symbol) [0x00118386]
+	(No symbol) [0x000F163C]
+	(No symbol) [0x000F269D]
+	GetHandleVerifier [0x004E9A22+2655074]
+	GetHandleVerifier [0x004DCA24+2601828]
+	GetHandleVerifier [0x002F8C0A+619850]
+	GetHandleVerifier [0x002F7830+614768]
+	(No symbol) [0x001E05FC]
+	(No symbol) [0x001E5968]
+	(No symbol) [0x001E5A55]
+	(No symbol) [0x001F051B]
+	BaseThreadInitThunk [0x753B00F9+25]
+	RtlGetAppContainerNamedObjectPath [0x77057BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77057B8E+238]
+	(No symbol) [0x00000000]
+</msg>
+</errors>
+</robot>
