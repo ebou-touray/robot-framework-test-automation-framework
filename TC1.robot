@@ -2,17 +2,6 @@
 Documentation      Tests related to Login Scenarios
 Library            SeleniumLibrary
 
-*** Variables ***
-${URL}  https://magento.softwaretestingboard.com
-${BROWSER}  chrome
-${HOMEPAGE_SIGNIN_LINK}  class:authorization-link
-${LOGIN_USERNAME_FIELD}   name:login[username]
-${LOGIN_PASSWORD_FIELD}   id:pass
-${SIGNIN_BUTTON}   id:send2
-${LOGIN_SUCCESS_MESSAGE}   Welcome, Ebou Touray!
-${USERNAME}  ${EMPTY}
-${PASSWORD}  ${EMPTY}
-
 *** Test Cases ***
 Valid Login
    [Tags]  Ebou
@@ -29,10 +18,10 @@ Valid Login
     [Template]  Invalid login credentials should not allow the user to login
 
      amieocolley@gmail.com      Jalato@4      ${LOGIN_SUCCESS_MESSAGE}
-     amieocolle@gmail.com       Jalato@1     ${LOGIN_SUCCESS_MESSAGE}
-     amieocolley@gmail.com      Jalato@1       ${LOGIN_SUCCESS_MESSAGE}
-     ${EMPTY}               Testing 123!    ${LOGIN_SUCCESS_MESSAGE}
-     ${EMPTY}               ${EMPTY}        ${LOGIN_SUCCESS_MESSAGE}
+     amieocolle@gmail.com       Jalato@1      ${LOGIN_SUCCESS_MESSAGE}
+     amieocolley@gmail.com      Jalato@1      ${LOGIN_SUCCESS_MESSAGE}
+     ${EMPTY}                   Jalato@1      ${LOGIN_SUCCESS_MESSAGE}
+     ${EMPTY}                   ${EMPTY}      ${LOGIN_SUCCESS_MESSAGE}
 
 
 *** Keywords ***
