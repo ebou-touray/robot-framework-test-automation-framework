@@ -9,7 +9,7 @@ ${HOMEPAGE_SIGNIN_LINK}  class:authorization-link
 ${LOGIN_USERNAME_FIELD}   name:login[username]
 ${LOGIN_PASSWORD_FIELD}   id:pass
 ${SIGNIN_BUTTON}   id:send2
-${LOGIN_SUCCESS_MESSAGE}   Welcome, David Zoe!
+${LOGIN_SUCCESS_MESSAGE}   Welcome, Ebou Touray!
 ${USERNAME}  ${EMPTY}
 ${PASSWORD}  ${EMPTY}
 
@@ -19,8 +19,8 @@ Valid Login
    Open Browser  ${URL}   ${BROWSER}
    Maximize Browser Window
    Click Element  ${HOMEPAGE_SIGNIN_LINK}
-   Input Text  ${LOGIN_USERNAME_FIELD}  ${USERNAME}
-   Input Text  ${LOGIN_PASSWORD_FIELD}  ${PASSWORD}
+   Input Text  ${LOGIN_USERNAME_FIELD}  amieocolley@gmail.com
+   Input Text  ${LOGIN_PASSWORD_FIELD}  Jalato@1
    Click Element  ${SIGNIN_BUTTON}
    Wait Until Page Contains  ${LOGIN_SUCCESS_MESSAGE}  50s
    #Capture Page Screenshot
@@ -28,9 +28,9 @@ Valid Login
  Verify that access is denied when login credentials are not correct
     [Template]  Invalid login credentials should not allow the user to login
 
-     davidzoe@gmail.com     Testing123      ${LOGIN_SUCCESS_MESSAGE}
-     davidzo@gmail.com      Testing123!     ${LOGIN_SUCCESS_MESSAGE}
-     davidzoe@gmail.com     Testing123      ${LOGIN_SUCCESS_MESSAGE}
+     amieocolley@gmail.com      Jalato@4      ${LOGIN_SUCCESS_MESSAGE}
+     amieocolle@gmail.com       Jalato@1     ${LOGIN_SUCCESS_MESSAGE}
+     amieocolley@gmail.com      Jalato@1       ${LOGIN_SUCCESS_MESSAGE}
      ${EMPTY}               Testing 123!    ${LOGIN_SUCCESS_MESSAGE}
      ${EMPTY}               ${EMPTY}        ${LOGIN_SUCCESS_MESSAGE}
 
