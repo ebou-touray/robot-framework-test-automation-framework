@@ -24,12 +24,15 @@ ${CREATE_ACCOUNT_BUTTON}    xpath://span[text() = 'Create an Account' ]
 ${LOGGEDIN_USER}
 
 
-
-
 *** Keywords ***
 Navigate to Home Page
     Open Browser    ${URL}  ${BROWSER}
     Maximize Browser Window
+
+Precondition for New User Account
+    Open Browser    ${URL}  ${BROWSER}
+    Maximize Browser Window
+    Click Element  ${CREATE_NEW_ACCOUNT_LINK}
 
 Enter login credentials and click on the signin button
     [Arguments]  ${username}    ${password}
@@ -38,13 +41,34 @@ Enter login credentials and click on the signin button
     Input Text  ${LOGIN_PASSWORD_FIELD}  ${password}
     Click Element   ${SIGNIN_BUTTON}
 
-Click the create account link and enter required details for new user
-    Click Element  ${CREATE_NEW_ACCOUNT_LINK}
+Enter required details for new user
     Enter new user firstname
     Enter new user lastname
     Enter email for creating new user
     Input Text  ${CREATE_ACCOUNT_PASSWORD_FIELD}  Testing123!
     Input Text  ${CONFIRMATION_PASSWORD_FIELD}  Testing123!
+
+Enter required details for new user and omit firstname
+    Enter new user lastname
+    Enter email for creating new user
+    Input Text  ${CREATE_ACCOUNT_PASSWORD_FIELD}  Testing123!
+    Input Text  ${CONFIRMATION_PASSWORD_FIELD}  Testing123!
+    Click Element   ${CREATE_ACCOUNT_BUTTON}
+
+Enter details for new user and omit required fields
+    [Arguments]   ${firstname}   ${lastname}     ${email}     ${password}    ${confirm-password}
+    Input Text  ${CREATE_ACCOUNT_FIRSTNAME_FIELD}     ${firstname}
+    Input Text  ${CREATE_ACCOUNT_LASTNAME_FIELD}      ${lastname}
+    Input Text  ${CREATE_ACCOUNT_EMAIL_FIELD}     ${email}
+    Input Text  ${CREATE_ACCOUNT_PASSWORD_FIELD}   ${password}
+    Input Text  ${CONFIRMATION_PASSWORD_FIELD}    ${confirm-password}
+    Click Element   ${CREATE_ACCOUNT_BUTTON}
+
+Logout new user and go to create account page
+    Click Element   xpath://div[@aria-hidden='false']//a[normalize-space()='Sign Out']
+    Wait Until Element is Enabled   class:authrorization-link
+    Click Element   class:authorization-link
+    Click Element  ${CREATE_NEW_ACCOUNT_LINK}
 
 
 Click Create account button and assert that user has been created successfully

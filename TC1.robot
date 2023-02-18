@@ -2,10 +2,12 @@
 Documentation      Tests related to Login Scenarios
 Library            SeleniumLibrary
 Resource           MyTest_Keywords.robot
+Suite Setup        Navigate to Home Page
+
 *** Test Cases ***
 Valid Login
    [Tags]  Ebou
-   Navigate to Home Page
+   #Navigate to Home Page
    Enter login credentials and click on the signin button   amieocolley@gmail.com  Jalato@1
    Wait Until Page Contains  ${LOGIN_SUCCESS_MESSAGE}  50s
    #Capture Page Screenshot
