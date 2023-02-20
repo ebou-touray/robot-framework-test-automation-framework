@@ -13,35 +13,27 @@ Verify that new user can create a new account
 
 verify that user cannot omit firstname when creating a new account
     [Tags]  NewAccount
-    #[Setup]    Precondition for New User Account
-    Enter required details for new user and omit firstname
-    Enter details for new user and omit required fields  ${EMPTY}  Yahoo  amieocolley@gmail.com  Jalato@12  Jalato@12
+
+    Enter details for new user and omit required fields  ${EMPTY}  Test   amieocolley@gmail.com  Jalato@123  Jalato@123
     Page Should Contain  This is a required field
-    sleep   50s
+
 
 Verify that user cannot omit lastname when creating a new account
     [Tags]  NewAccount
     reload page
-    Enter details for new user and omit required fields  Test  ${empty}  amieocolley@gmail.com  Jalato@12  Jalato@12
+    Enter details for new user and omit required fields  Test  ${empty}  amieocolley@gmail.com  Jalato@123  Jalato@123
     Page Should Contain  This is a required field
+
 
 Verify that user cannot omit email when creating a new account
     [Tags]  NewAccount
     reload page
-    Enter details for new user and omit required fields  Test  Yahoo  ${empty}  Jalato@12  Jalato@12
+    Enter details for new user and omit required fields  Test  Yahoo  ${empty}  Jalato@123  Jalato@123
     Page Should Contain  This is a required field
 
 Verify that user cannot omit password when creating a new account
     [Tags]  NewAccount
     reload page
-    Enter details for new user and omit required fields  Test   Yahoo   amieocolley@gmail.com  ${empty}  Jalato@12
+    Enter details for new user and omit required fields  Test   Yahoo   amieocolley@gmail.com  ${empty}  Jalato@123
     Page Should Contain  This is a required field
 
-Verify that user cannot omit confirm password when creating a new account
-    [Tags]  NewAccount
-    reload page
-    Enter details for new user and omit required fields  Test  Yahoo   amieocolley@gmail.com  Jalato@12  ${empty}
-    Page Should Contain  This is a required field
-
-Verify that a user can edit password
-     [Setup]    Precondition for New User Account

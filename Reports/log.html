@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 4.0.2 (Python 3.9.10 on win32)" name="Generator">
+<meta content="Robot Framework 6.0.2 (Python 3.9.10 on win32)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all" type="text/css">
 /* Generic and misc styles */
@@ -319,6 +319,9 @@ th.stats-col-graph:hover {
     padding: 3px;
     cursor: default;
 }
+.element-header .label {
+    margin-right: 0.5em;
+}
 .name {
     font-weight: bold;
 }
@@ -588,10 +591,10 @@ function drawCallback(element, childElement, childrenNames) {
     }
 }
 function expandSuite(suite) {
-    if (suite.status == "PASS")
-        expandElement(suite);
-    else
+    if (suite.status == "FAIL")
         expandFailed(suite);
+    else
+        expandElement(suite);
 }
 function expandElement(item, retryCount) {
     retryCount = typeof retryCount !== 'undefined' ? retryCount : 3;
@@ -966,6 +969,7 @@ window.model = (function () {
     }
     function Keyword(data) {
         var kw = createModelObject(data);
+        var flatTypes = ['RETURN', 'BREAK', 'CONTINUE'];
         kw.libname = data.libname;
         kw.fullName = (kw.libname ? kw.libname + '.' : '') + kw.name;
         kw.type = data.type;
@@ -1350,8 +1354,8 @@ window.testdata = function () {
     var _statistics = null;
     var LEVELS = ['TRACE', 'DEBUG', 'INFO', 'WARN', 'ERROR', 'FAIL', 'SKIP'];
     var STATUSES = ['FAIL', 'PASS', 'SKIP', 'NOT RUN'];
-    var KEYWORD_TYPES = ['KEYWORD', 'SETUP', 'TEARDOWN', 'FOR', 'VAR', 'IF', 'ELSE IF', 'ELSE'];
-    var MESSAGE_TYPE = 8;
+    var KEYWORD_TYPES = ['KEYWORD', 'SETUP', 'TEARDOWN', 'FOR', 'ITERATION', 'IF', 'ELSE IF', 'ELSE', 'RETURN',
+                         'TRY', 'EXCEPT', 'FINALLY', 'WHILE', 'CONTINUE', 'BREAK'];
     function addElement(elem) {
         if (!elem.id)
             elem.id = uniqueId();
@@ -1372,10 +1376,10 @@ window.testdata = function () {
                 elapsed];
     }
     function createMessage(element, strings) {
-        return model.Message(LEVELS[element[2]],
-                             util.timestamp(element[1]),
-                             strings.get(element[3]),
-                             strings.get(element[4]));
+        return model.Message(LEVELS[element[1]],
+                             util.timestamp(element[0]),
+                             strings.get(element[2]),
+                             strings.get(element[3]));
     }
     function parseStatus(stats) {
         return STATUSES[stats[0]];
@@ -1386,9 +1390,12 @@ window.testdata = function () {
         };
     }
     function createBodyItem(parent, element, strings, index) {
-        if (element[0] == MESSAGE_TYPE)
+        if (element.length < 5)
             return createMessage(element, strings);
-        return createKeyword(parent, element, strings, index);
+        var messages = util.filter(parent.children(), function (child) {
+            return child.type == 'message';
+        })
+        return createKeyword(parent, element, strings, index - messages.length);
     }
     function createKeyword(parent, element, strings, index) {
         var kw = model.Keyword({
@@ -1796,25 +1803,25 @@ function stopPropagation(event) {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,4,[],[1,0,30215],[],[[5,0,0,[6],[1,8252,21961],[[1,7,8,0,0,0,0,0,[1,8256,7191],[[0,9,10,0,11,12,0,0,[1,8257,4340],[[8,8258,2,13]]],[0,14,10,0,15,0,0,0,[1,12598,362],[]],[0,16,10,0,17,18,0,0,[1,12960,2486],[[8,12961,2,19]]]]],[0,20,8,0,0,21,0,0,[1,15449,5591],[[0,16,10,0,17,22,0,0,[1,15450,1665],[[8,15451,2,23]]],[0,24,10,0,25,26,0,0,[1,17115,651],[[8,17116,2,27]]],[0,24,10,0,25,28,0,0,[1,17766,203],[[8,17767,2,29]]],[0,16,10,0,17,30,0,0,[1,17969,3071],[[8,17970,2,31]]]]],[0,32,10,0,33,34,0,0,[1,21042,1264],[]],[0,35,8,0,0,36,0,0,[1,22308,7904],[[0,16,10,0,17,37,0,0,[1,22308,1821],[[8,22309,2,38]]],[0,16,10,0,17,39,0,0,[1,24129,648],[[8,24130,2,40]]],[0,32,10,0,33,41,0,0,[1,24777,191],[]],[0,24,10,0,25,42,0,0,[1,24968,627],[[8,24969,2,43]]],[0,24,10,0,25,44,0,0,[1,25595,615],[[8,25596,2,45]]],[0,24,10,0,25,46,0,0,[1,26210,760],[[8,26212,2,47]]],[0,16,10,0,17,48,0,0,[1,26970,3242],[[8,26971,2,49]]]]]]]],[[1,7,8,0,0,0,0,0,[1,1189,7062],[[0,9,10,0,11,12,0,0,[1,1190,4607],[[8,1190,2,13]]],[0,14,10,0,15,0,0,0,[1,5798,357],[]],[0,16,10,0,17,18,0,0,[1,6155,2095],[[8,6157,2,19]]]]]],[1,1,0,0]];
+window.output["suite"] = [1,2,3,4,[],[1,0,15554],[],[[5,0,0,[6],[1,6474,1292],[[0,7,8,0,0,9,0,0,[1,6477,1263],[[0,10,11,0,12,13,0,0,[1,6480,332],[[6482,2,14]]],[0,10,11,0,12,15,0,0,[1,6812,165],[[6813,2,16]]],[0,10,11,0,12,17,0,0,[1,6977,216],[[6978,2,18]]],[0,10,11,0,12,19,0,0,[1,7193,266],[[7194,2,20]]],[0,10,11,0,12,21,0,0,[1,7459,186],[[7463,2,22]]],[0,23,11,0,24,25,0,0,[1,7645,95],[[7645,2,26]]]]],[0,27,11,0,28,29,0,0,[1,7741,24],[[7765,2,30]]]]],[31,0,0,[6],[1,7767,2469],[[0,32,11,0,33,0,0,0,[1,7768,1435],[]],[0,7,8,0,0,34,0,0,[1,9204,1011],[[0,10,11,0,12,13,0,0,[1,9207,358],[[9209,2,35]]],[0,10,11,0,12,15,0,0,[1,9566,106],[[9567,2,36]]],[0,10,11,0,12,17,0,0,[1,9672,162],[[9674,2,18]]],[0,10,11,0,12,19,0,0,[1,9834,176],[[9835,2,20]]],[0,10,11,0,12,21,0,0,[1,10010,126],[[10011,2,22]]],[0,23,11,0,24,25,0,0,[1,10136,79],[[10137,2,26]]]]],[0,27,11,0,28,29,0,0,[1,10216,19],[[10235,2,30]]]]],[37,0,0,[6],[1,10238,2543],[[0,32,11,0,33,0,0,0,[1,10239,1388],[]],[0,7,8,0,0,38,0,0,[1,11628,1133],[[0,10,11,0,12,13,0,0,[1,11632,416],[[11633,2,35]]],[0,10,11,0,12,15,0,0,[1,12048,159],[[12049,2,39]]],[0,10,11,0,12,17,0,0,[1,12207,123],[[12208,2,40]]],[0,10,11,0,12,19,0,0,[1,12331,207],[[12332,2,20]]],[0,10,11,0,12,21,0,0,[1,12539,145],[[12541,2,22]]],[0,23,11,0,24,25,0,0,[1,12684,77],[[12685,2,26]]]]],[0,27,11,0,28,29,0,0,[1,12762,19],[[12780,2,30]]]]],[41,0,0,[6],[1,12784,2766],[[0,32,11,0,33,0,0,0,[1,12785,1556],[]],[0,7,8,0,0,42,0,0,[1,14343,1185],[[0,10,11,0,12,13,0,0,[1,14345,422],[[14347,2,35]]],[0,10,11,0,12,15,0,0,[1,14767,166],[[14769,2,39]]],[0,10,11,0,12,17,0,0,[1,14933,227],[[14934,2,18]]],[0,10,11,0,12,19,0,0,[1,15160,123],[[15161,2,43]]],[0,10,11,0,12,21,0,0,[1,15283,145],[[15284,2,22]]],[0,23,11,0,24,25,0,0,[1,15428,99],[[15429,2,26]]]]],[0,27,11,0,28,29,0,0,[1,15531,18],[[15549,2,30]]]]]],[[1,44,8,0,0,0,0,0,[1,548,5926],[[0,45,11,0,46,47,0,0,[1,549,3923],[[551,2,48]]],[0,49,11,0,50,0,0,0,[1,4472,256],[]],[0,23,11,0,24,51,0,0,[1,4729,1745],[[4730,2,52]]]]]],[4,4,0,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*EditPassword","*C:\\Users\\dell\\PycharmProjects\\TestOAutomation2023\\EditPassword.robot","*../EditPassword.robot","*<p>Test to Change Password\x3c/p>","*Verify that a user can change the password","*Password","*Precondition for New User Account","*MyTest_Keywords","*Open Browser","*SeleniumLibrary","*<p>Opens a new browser instance to the optional <code>url\x3c/code>.\x3c/p>","*${URL}, ${BROWSER}","*Opening browser 'chrome' to base url '<a href=\"https://magento.softwaretestingboard.com\">https://magento.softwaretestingboard.com\x3c/a>'.","*Maximize Browser Window","*<p>Maximizes current browser window.\x3c/p>","*Click Element","*<p>Click the element identified by <code>locator\x3c/code>.\x3c/p>","*${CREATE_NEW_ACCOUNT_LINK}","*Clicking element '<a href=\"xpath://a[text(\">xpath://a[text(\x3c/a>) = 'Create an Account']'.","*Enter login credentials and click on the signin button","*amieocolley@gmail.com, Jalato@12","*${HOMEPAGE_SIGNIN_LINK}","*Clicking element 'class:authorization-link'.","*Input Text","*<p>Types the given <code>text\x3c/code> into the text field identified by <code>locator\x3c/code>.\x3c/p>","*${LOGIN_USERNAME_FIELD}, ${username}","*Typing text 'amieocolley@gmail.com' into text field 'name:login[username]'.","*${LOGIN_PASSWORD_FIELD}, ${password}","*Typing text 'Jalato@12' into text field 'id:pass'.","*${SIGNIN_BUTTON}","*Clicking element 'id:send2'.","*Wait Until Page Contains","*<p>Waits until <code>text\x3c/code> appears on the current page.\x3c/p>","*${LOGIN_SUCCESS_MESSAGE}, 50s","*Edit Account Information Change Password","*Jalato@12, Jalatato@123, Jalato@123","*${EDIT}","eNpzzslMzs7MS1dIzUnNTc0rUVC3SVTIKEpNs1WqKEgsybDS19eKdshMsVUrLM0vsc5NzMxLzs8rAaqECMTqp2SWRRtBKEMIZYxNEMhLjDZUskM1VQnJQCUSzbLRT7SLVdcDAHtfQYM=","*${CHANGE_PASSWORD}","*Clicking element 'name:change_password'.","*Change Password","*${CURRENT_PASSWORD}, Jalato@12","*Typing text 'Jalato@12' into text field 'id:current-password'.","*${NEW_PASSWORD}, Jalato@123","*Typing text 'Jalato@123' into text field 'name:password'.","*${CONFIRM_NEW_PASSWORD}, Jalato@123","*Typing text 'Jalato@123' into text field 'id:password-confirmation'.","*${BOTTON_SAVE}","*Clicking element '<a href=\"xpath://*[@id=&quot;form-validate&quot;]/div/div[1]/button/span\">xpath://*[@id=\"form-validate\"]/div/div[1]/button/span\x3c/a>'."]);
+window.output["strings"] = window.output["strings"].concat(["*","*CreateNewUser","*C:\\Users\\dell\\PycharmProjects\\TestOAutomation2023\\CreateNewUser.robot","*../CreateNewUser.robot","*<p>Tests related to creating new user account on Luma\x3c/p>","*verify that user cannot omit firstname when creating a new account","*NewAccount","*Enter details for new user and omit required fields","*MyTest_Keywords","*${EMPTY}, Test, amieocolley@gmail.com, Jalato@123, Jalato@123","*Input Text","*SeleniumLibrary","*<p>Types the given <code>text\x3c/code> into the text field identified by <code>locator\x3c/code>.\x3c/p>","*${CREATE_ACCOUNT_FIRSTNAME_FIELD}, ${firstname}","*Typing text '' into text field 'id:firstname'.","*${CREATE_ACCOUNT_LASTNAME_FIELD}, ${lastname}","*Typing text 'Test' into text field 'id:lastname'.","*${CREATE_ACCOUNT_EMAIL_FIELD}, ${email}","*Typing text 'amieocolley@gmail.com' into text field 'name:email'.","*${CREATE_ACCOUNT_PASSWORD_FIELD}, ${password}","*Typing text 'Jalato@123' into text field 'id:password'.","*${CONFIRMATION_PASSWORD_FIELD}, ${confirm-password}","*Typing text 'Jalato@123' into text field 'id:password-confirmation'.","*Click Element","*<p>Click the element identified by <code>locator\x3c/code>.\x3c/p>","*${CREATE_ACCOUNT_BUTTON}","*Clicking element '<a href=\"xpath://span[text(\">xpath://span[text(\x3c/a>) = 'Create an Account' ]'.","*Page Should Contain","*<p>Verifies that current page contains <code>text\x3c/code>.\x3c/p>","*This is a required field","*Current page contains text 'This is a required field'.","*Verify that user cannot omit lastname when creating a new account","*Reload Page","*<p>Simulates user reloading page.\x3c/p>","*Test, ${empty}, amieocolley@gmail.com, Jalato@123, Jalato@123","*Typing text 'Test' into text field 'id:firstname'.","*Typing text '' into text field 'id:lastname'.","*Verify that user cannot omit email when creating a new account","*Test, Yahoo, ${empty}, Jalato@123, Jalato@123","*Typing text 'Yahoo' into text field 'id:lastname'.","*Typing text '' into text field 'name:email'.","*Verify that user cannot omit password when creating a new account","*Test, Yahoo, amieocolley@gmail.com, ${empty}, Jalato@123","*Typing text '' into text field 'id:password'.","*Precondition for New User Account","*Open Browser","*<p>Opens a new browser instance to the optional <code>url\x3c/code>.\x3c/p>","*${URL}, ${BROWSER}","*Opening browser 'chrome' to base url '<a href=\"https://magento.softwaretestingboard.com\">https://magento.softwaretestingboard.com\x3c/a>'.","*Maximize Browser Window","*<p>Maximizes current browser window.\x3c/p>","*${CREATE_NEW_ACCOUNT_LINK}","*Clicking element '<a href=\"xpath://a[text(\">xpath://a[text(\x3c/a>) = 'Create an Account']'.","eNqdkDFvwkAMhff8Cm9ph0YVdCEbakFUhRCp6VDpJHS5GLhyOUe+C23663sJTBk6ML7P9rOfF8zEoC3stUGIn1Px4ZCdqNAYkXfqKLnOmb5QeScKdH47bz3V0muyk8fJVGy6nu7esPsmrlzCVJKPgSwYbRGeUnitG2Kv7SGQkiV3EC/lCXl9UTHsZdhdpbChqjWYkV9Sa6tFf1kKGUE9cLCyxmo0GxUsFZZSneCuJueBUaH1oKQxYKTz92kEwcNilH8Wq22Wz4tVj/4P2nT+SPYqxRntWbwr1k0oDfkS/MGLST50TpPZdWY6S351M669rNduzMIzRuiGs25JEhYLpz0+NOFt8oDuDwJ0uR4="]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:22","fail":0,"label":"All Tests","pass":1,"skip":0}],[{"elapsed":"00:00:22","fail":0,"label":"Password","pass":1,"skip":0}],[{"elapsed":"00:00:30","fail":0,"id":"s1","label":"EditPassword","name":"EditPassword","pass":1,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:00:09","fail":0,"label":"All Tests","pass":4,"skip":0}],[{"elapsed":"00:00:09","fail":0,"label":"NewAccount","pass":4,"skip":0}],[{"elapsed":"00:00:16","fail":0,"id":"s1","label":"CreateNewUser","name":"CreateNewUser","pass":4,"skip":0}]];
 </script>
 <script type="text/javascript">
-window.output["errors"] = [];
+window.output["errors"] = [[539,4,53]];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1676834526763;
+window.output["baseMillis"] = 1676920732489;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 30308;
+window.output["generated"] = 15583;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
@@ -2120,7 +2127,7 @@ function addExecutionLog(main) {
     <div class="element-header closed" onclick="toggleKeyword('${id}')">
       <div class="element-header-left" title="${type}  {{if name}}{{html fullName}}  {{/if}}[${status}]">
         <span class="elapsed" title="Elapsed time">${times.elapsedTime}</span>
-        <span class="label keyword ${status.toLowerCase()}">${type}</span>
+        <span class="label ${status.toLowerCase()}">${type}</span>
         <span>{{html assign}}</span>
         <span class="name"><span class="parent-name">{{html libname}}{{if libname}} . {{/if}}</span>{{html name}}</span>
         <span class="arg">{{html arguments}}</span>
@@ -2128,7 +2135,7 @@ function addExecutionLog(main) {
       <div class="element-header-right" onclick="stopPropagation(event)">
         <a class="expand" title="Expand all" href="javascript:expandAll('${id}')"></a>
         <a class="collapse" title="Collapse all" href="javascript:collapseAll('${id}')"></a>
-        <a class="link" title="Link to this keyword" href="#${id}" onclick="makeElementVisible('${id}')"></a>
+        <a class="link" title="Link to this item" href="#${id}" onclick="makeElementVisible('${id}')"></a>
       </div>
       <div class="element-header-toggle" title="Toggle visibility"></div>
     </div>

@@ -8,7 +8,7 @@ Suite Setup        Navigate to Home Page
 Valid Login
    [Tags]  Ebou
    #Navigate to Home Page
-   Enter login credentials and click on the signin button   amieocolley@gmail.com  Jalato@12
+   Enter login credentials and click on the signin button   amieocolley@gmail.com  Jalato@123
    Wait Until Page Contains  ${LOGIN_SUCCESS_MESSAGE}  50s
    #Capture Page Screenshot
 
@@ -16,9 +16,9 @@ Valid Login
     [Template]  Invalid login credentials should not allow the user to login
 
      amieocolley@gmail.com      Jalato@4      ${LOGIN_SUCCESS_MESSAGE}
-     amieocolle@gmail.com       Jalato@12      ${LOGIN_SUCCESS_MESSAGE}
-     amieocolle@gmail.com       Jalato@12      ${LOGIN_SUCCESS_MESSAGE}
-     ${EMPTY}                   Jalato@12     ${LOGIN_SUCCESS_MESSAGE}
+     amieocolle@gmail.com       Jalato@123      ${LOGIN_SUCCESS_MESSAGE}
+     amieocolle@gmail.com       Jalato@123      ${LOGIN_SUCCESS_MESSAGE}
+     ${EMPTY}                   Jalato@123    ${LOGIN_SUCCESS_MESSAGE}
      ${EMPTY}                   ${EMPTY}      ${LOGIN_SUCCESS_MESSAGE}
 
 
